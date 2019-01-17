@@ -27,9 +27,12 @@ commands = {
 
     'пизда пизда огорчение': {
         'attachment': 'photo-171283257_456239024'
+    },
+
+    'кошкодевка': {
+        'attachment': 'photo-171283257_456239025'
     }
 }
-
 
 def process_command(command):
     for k, v in commands.items():
