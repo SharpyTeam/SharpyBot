@@ -8,7 +8,7 @@ commands = {
 
     'F': {
         'random': [
-              {'attachment': 'photo-171283257_456239020'},
+            {'attachment': 'photo-171283257_456239020'},
             {'attachment': 'photo-171283257_456239033'}
         ]
     },
@@ -48,10 +48,6 @@ commands = {
         'attachment': 'photo-171283257_456239026'
     },
 
-    'си говно': {
-        'message': 'КАЛ ТВОЙ ГОВНО'
-    },
-
     'ъеъ': {
         'attachment': 'photo-171283257_456239029'
     },
@@ -70,6 +66,14 @@ commands = {
     'справедливость': {
         'attachment': 'photo-171283257_456239037'
     },
+
+    'кек': {
+        'attachment': 'photo-171283257_456239039'
+    },
+
+    'но я же': {
+        'attachment': 'photo-171283257_456239043'
+    },
 }
 
 commands_regexp = {
@@ -81,12 +85,24 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239034'
     },
 
-    '(?i)(?<![а-яa-z0-9])де(д|а|у)(?![а-яa-z0-9])': {
+    '(?i)(?<![а-яa-z0-9])де(д|да|ду|дом|де)(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239036'
     },
 
-    '(?i)(?<![а-яa-z0-9])я\s+(пидорас|пидарас|ивтшник)(?![а-яa-z0-9])': {
+    '(?i)(?<![а-яa-z0-9])я\s+(пидорас|пидарас|ивтшник|педик|пидор|гей)(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239038'
+    },
+
+    '(?i)(?<![а-яa-z0-9])(си|си\+\+|цпп|c|c\+\+)\s+(говн|дерьм)(о|ище)(?![а-яa-z0-9])': {
+        'message': 'КАЛ ТВОЙ ГОВНО'
+    },
+
+    '^\s*\:3\s*$': {
+        'attachment': 'photo-171283257_456239040'
+    },
+
+    '(?i)(?<![а-яa-z0-9])о+го+(?![а-яa-z0-9])': {
+        'attachment': 'photo-171283257_456239041'
     }
 }
 
@@ -99,7 +115,7 @@ def process_found_entry(entry):
 
 
 def process_command(command):
-    command.replace("ё", "е")
+    command = command.replace("ё", "е")
     for k, v in commands.items():
         l_command = r'\s+'.join(re.split(r'\s+', k))
         if re.search('(?i)(?<![а-яa-z0-9])' + l_command + '(?![а-яa-z0-9])', command) is not None:
@@ -108,3 +124,7 @@ def process_command(command):
     for k, v in commands_regexp.items():
         if re.search(k, command) is not None:
             return process_found_entry(v)
+
+
+if __name__ == '__main__':
+    print(process_command(input()))
