@@ -24,7 +24,7 @@ def processing():
         c_id = (data['object']['peer_id'] - 2000000000)
         params = process_command(data['object']['text'])
         if params is not None:
-            api.messages.send(access_token=token, chat_id=c_id, random_id=random.randint(0, 2147483647), **params)
+            api.messages.send(access_token=token, chat_id=c_id, reply_to=data['object']['id'], random_id=random.randint(0, 2147483647), **params)
         return 'ok'
 
 
