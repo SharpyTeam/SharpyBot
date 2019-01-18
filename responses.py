@@ -78,6 +78,15 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239034'
     },
 
+    '\)': {
+        'random': [
+            {'message': '%occurrences% скобочек. ВАУ!'},
+            {'message': '%occurrences% скобочек. Ничего себе!'},
+            {'message': '%occurrences% скобочек. Вы гений!'},
+            {'message': '%occurrences% скобочек. Вы лучший!'}
+        ]
+    },
+
     '(?i)(?<![а-яa-z0-9])дед(а|у|ом|е|ы|ов|ам|ах|ами)?(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239036'
     },
