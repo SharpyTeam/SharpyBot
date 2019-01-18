@@ -30,7 +30,7 @@ def processing():
                               forward_messages=str(data['object']['conversation_message_id']),
                               random_id=random.randint(0, 2147483647), **params)
         return 'ok'
-    return 'fail'
+    return 'ok'
 
 
 @app.route('/repo_push', methods=['POST'])
