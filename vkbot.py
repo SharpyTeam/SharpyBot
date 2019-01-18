@@ -25,3 +25,11 @@ def processing():
         if params is not None:
             api.messages.send(access_token=token, chat_id=c_id, random_id=random.randint(0, 2147483647), **params)
         return 'ok'
+
+@app.route('/repo_push', methods = ['POST'])
+def repo_push():
+    # hardcoded, but i do not give a shit
+    subprocess.run(["git", "pull"], cwd = '/home/selya/vkbot')
+    subprocess.run(["touch", "/var/www/selya_pythonanywhere_com_wsgi.py"])
+    return 'ok'
+    
