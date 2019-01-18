@@ -7,7 +7,10 @@ commands = {
     },
 
     'F': {
-        'attachment': 'photo-171283257_456239020'
+        'random': [
+            {'attachment': 'photo-171283257_456239020'},
+            {'attachment': 'photo-171283257_456239033'}
+        ]
     },
 
     'справедливо': {
@@ -61,6 +64,10 @@ commands = {
 commands_regexp = {
     '(?i)(?<![а-яa-z0-9])кошкоде[вф]+(очка|ка)(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239025'
+    },
+
+    '^\s*\)\s*$': {
+        'attachment': 'photo-171283257_456239034'
     },
 }
 
