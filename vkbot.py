@@ -27,7 +27,7 @@ def processing():
             print("Received appropriate message with trigger.")
             print("Callback object:")
             print(repr(data))
-            api.messages.send(access_token=token, chat_id=c_id, forward_messages=str(data['object']['id']),
+            api.messages.send(access_token=token, chat_id=c_id, reply_to=str(data['object']['conversation_message_id']),
                               random_id=random.randint(0, 2147483647), **params)
         return 'ok'
     return 'fail'
