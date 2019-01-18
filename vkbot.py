@@ -4,7 +4,7 @@ import subprocess
 import vk
 from flask import Flask, request, json
 
-from logics import process_command
+from logics import process_message
 from settings import *
 
 app = Flask(__name__)
@@ -24,7 +24,7 @@ def processing():
         if 'secret' not in data or data['secret'] != secret_token:
             return 'ok'
 
-        params = process_command(data['object']['text'])
+        params = process_message(data['object']['text'])
 
         if params is not None:
             print("Received appropriate message with trigger.")

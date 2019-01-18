@@ -1,3 +1,6 @@
+import re
+import utils
+
 commands = {
     'F': {
         'random': [
@@ -65,6 +68,14 @@ commands = {
     }
 }
 
+
+def process_braces(m_vars):
+    braces_count = len(re.findall('\)', m_vars['message']))
+    m_vars['braces_message'] = str(braces_count) + ' ' + utils.get_plural(braces_count,
+                                                                          ['скобочка', 'скобочки', 'скобочек'])
+    m_vars['braces_count'] = braces_count
+
+
 commands_regexp = {
     '(?i)(?<![а-яa-z0-9])в\s?пи[зс]ду(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239019'
@@ -78,13 +89,15 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239034'
     },
 
-    '\)': {
+    '\){3,}': {
         'random': [
-            {'message': '%occurrences% скобочек. ВАУ!'},
-            {'message': '%occurrences% скобочек. Ничего себе!'},
-            {'message': '%occurrences% скобочек. Вы гений!'},
-            {'message': '%occurrences% скобочек. Вы лучший!'}
-        ]
+            {'message': '%braces_message%. ВАУ!'},
+            {'message': '%braces_message%. Ничего себе!'},
+            {'message': '%braces_message%. Вы гений!'},
+            {'message': '%braces_message%. Вы лучший!'}
+        ],
+
+        'preprocess': process_braces
     },
 
     '(?i)(?<![а-яa-z0-9])дед(а|у|ом|е|ы|ов|ам|ах|ами)?(?![а-яa-z0-9])': {
