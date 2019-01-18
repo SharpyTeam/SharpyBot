@@ -1,4 +1,4 @@
-import random
+import secrets
 import re
 
 from responses import *
@@ -8,7 +8,7 @@ def process_found_entry(entry):
     if 'random' not in entry:
         return entry
     else:
-        return random.choice(entry['random'])
+        return secrets.choice(entry['random'])
 
 
 def process_command(command):
