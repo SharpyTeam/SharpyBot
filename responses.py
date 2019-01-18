@@ -74,7 +74,7 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239025'
     },
 
-    '^\s*\)\s*$': {
+    '(?i)^\s*\)\s*$': {
         'attachment': 'photo-171283257_456239034'
     },
 
@@ -94,7 +94,7 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239039'
     },
 
-    '^\s*\:3\s*$': {
+    '(?i)^\s*\:3\s*$': {
         'attachment': 'photo-171283257_456239040'
     },
 
@@ -110,7 +110,7 @@ commands_regexp = {
         'attachment': 'photo-171283257_456239045'
     },
 
-    '^\s*ща\s*$': {
+    '(?i)^\s*ща\s*$': {
         'attachment': 'photo-171283257_456239023'
     },
 }
