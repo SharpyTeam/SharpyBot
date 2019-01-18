@@ -1,5 +1,6 @@
 import secrets
 import re
+import copy
 
 from responses import *
 
@@ -8,6 +9,7 @@ def process_found_entry(regex, command, entry):
     if 'random' in entry:
         entry = secrets.choice(entry['random'])
     if 'message' in entry and '%occurrences%' in entry['message']:
+        entry['message'] = copy.deepcopy(entry['message'])
         entry['message'] = entry['message'].replace('%occurrences%', str(len(re.findall(regex, command))))
     return entry
 
