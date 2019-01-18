@@ -21,13 +21,13 @@ def processing():
     if data['type'] == 'confirmation':
         return confirmation_token
     elif data['type'] == 'message_new':
-        c_id = (data['object']['peer_id'] - 2000000000)
         params = process_command(data['object']['text'])
         if params is not None:
             print("Received appropriate message with trigger.")
             print("Callback object:")
             print(repr(data))
-            api.messages.send(access_token=token, chat_id=c_id, reply_to=str(data['object']['conversation_message_id']),
+            api.messages.send(access_token=token, peer_id=data['object']['peer_id'],
+                              reply_to=str(data['object']['conversation_message_id']),
                               random_id=random.randint(0, 2147483647), **params)
         return 'ok'
     return 'fail'
