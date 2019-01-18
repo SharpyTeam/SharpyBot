@@ -8,13 +8,16 @@ commands = {
 
     'F': {
         'random': [
-            {'attachment': 'photo-171283257_456239020'},
+              {'attachment': 'photo-171283257_456239020'},
             {'attachment': 'photo-171283257_456239033'}
         ]
     },
 
     'справедливо': {
-        'sticker_id': '163'
+        'random': [
+            {'sticker_id': '163'},
+            {'attachment': 'photo-171283257_456239037'}
+        ]
     },
 
     'можно ненадо': {
@@ -58,7 +61,15 @@ commands = {
             {'attachment': 'photo-171283257_456239032'},
             {'attachment': 'photo-171283257_456239031'}
         ]
-    }
+    },
+
+    'произошел троллинг': {
+        'attachment': 'photo-171283257_456239035'
+    },
+
+    'справедливость': {
+        'attachment': 'photo-171283257_456239037'
+    },
 }
 
 commands_regexp = {
@@ -69,6 +80,14 @@ commands_regexp = {
     '^\s*\)\s*$': {
         'attachment': 'photo-171283257_456239034'
     },
+
+    '(?i)(?<![а-яa-z0-9])де(д|а|у)(?![а-яa-z0-9])': {
+        'attachment': 'photo-171283257_456239036'
+    },
+
+    '(?i)(?<![а-яa-z0-9])я\s+(пидорас|пидарас|ивтшник)(?![а-яa-z0-9])': {
+        'attachment': 'photo-171283257_456239038'
+    }
 }
 
 
@@ -80,6 +99,7 @@ def process_found_entry(entry):
 
 
 def process_command(command):
+    command.replace("ё", "е")
     for k, v in commands.items():
         l_command = r'\s+'.join(re.split(r'\s+', k))
         if re.search('(?i)(?<![а-яa-z0-9])' + l_command + '(?![а-яa-z0-9])', command) is not None:
