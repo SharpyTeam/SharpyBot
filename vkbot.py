@@ -24,12 +24,18 @@ def processing():
         c_id = (data['object']['peer_id'] - 2000000000)
         params = process_command(data['object']['text'])
         if params is not None:
-            api.messages.send(access_token=token, chat_id=c_id, forward_messages=str(data['object']['id']), random_id=random.randint(0, 2147483647), **params)
+            print("Received appropriate message with trigger.")
+            print("Callback object:")
+            print(repr(data))
+            api.messages.send(access_token=token, chat_id=c_id, forward_messages=str(data['object']['id']),
+                              random_id=random.randint(0, 2147483647), **params)
         return 'ok'
+    return 'fail'
 
 
 @app.route('/repo_push', methods=['POST'])
 def repo_push():
+    print("Repository has been updated, fetching it again...")
     # hardcoded, but i do not give a shit
     subprocess.run(["git", "fetch", "--all"], cwd='/home/selya/vkbot')
     subprocess.run(["git", "reset", "--hard", "origin/master"], cwd='/home/selya/vkbot')
