@@ -1,8 +1,7 @@
 import secrets
-import re
 import copy
 
-from responses import *
+from responses.responses import *
 
 
 def process_found_entry(regex, message, entry):

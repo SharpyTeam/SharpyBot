@@ -1,5 +1,4 @@
-import re
-import utils
+from responses.preprocess import *
 
 commands = {
     'F': {
@@ -67,14 +66,6 @@ commands = {
         'attachment': 'photo-171283257_456239044'
     }
 }
-
-
-def process_braces(m_vars):
-    braces_count = len(re.findall('\)', m_vars['message']))
-    m_vars['braces_message'] = str(braces_count) + ' ' + utils.get_plural(braces_count,
-                                                                          ['скобочка', 'скобочки', 'скобочек'])
-    m_vars['braces_count'] = braces_count
-
 
 commands_regexp = {
     '(?i)(?<![а-яa-z0-9])в\s?пи[зс]ду(?![а-яa-z0-9])': {
