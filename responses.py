@@ -64,7 +64,10 @@ commands = {
         'attachment': 'photo-171283257_456239044'
     },
     'гачи': {
-        'attachment': 'photo-171283257_456239047'
+        'random': [
+            {'attachment': 'photo-171283257_456239047'},
+            {'attachment': 'photo-171283257_456239048'}
+        ]
     }
 }
 
