@@ -62,9 +62,6 @@ commands = {
         'attachment': 'photo-171283257_456239043'
     },
 
-    'просто': {
-        'attachment': 'photo-171283257_456239044'
-    },
     'гачи': {
         'random': [
             {'attachment': 'photo-171283257_456239047'},
@@ -95,6 +92,17 @@ commands_regexp = {
         ],
 
         'preprocess': process_braces
+    },
+
+    '\({3,}': {
+        'random': [
+            {'message': '%sad_braces_message%. Грустно...'},
+            {'message': '%sad_braces_message%. Депрессия сковала тебя.'},
+            {'message': '%sad_braces_message%. Разве всё так плохо?'},
+            {'message': '%sad_braces_message%. Я заварю чай и принесу плед.'}
+        ],
+
+        'preprocess': process_sad_braces
     },
 
     '(?i)(?<![а-яa-z0-9])дед(а|у|ом|е|ы|ов|ам|ах|ами)?(?![а-яa-z0-9])': {
