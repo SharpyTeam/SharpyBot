@@ -64,6 +64,12 @@ commands = {
 
     'просто': {
         'attachment': 'photo-171283257_456239044'
+    },
+    'гачи': {
+        'random': [
+            {'attachment': 'photo-171283257_456239047'},
+            {'attachment': 'photo-171283257_456239048'}
+        ]
     }
 }
 
