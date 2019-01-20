@@ -144,4 +144,9 @@ commands_regexp = {
     '(?i)(?<![а-яa-z0-9])класс?[еи]ка(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239046'
     },
+
+    '(?i)^\s*расписание': {
+        'message': '%timetable%',
+        'preprocess': process_timetable
+    }
 }
