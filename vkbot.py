@@ -40,7 +40,7 @@ def processing():
 def repo_push():
     print("Repository has been updated, fetching it again...")
     # hardcoded, but i do not give a shit
-    subprocess.run(["git", "fetch", "--all"], cwd='/home/selya/vkbot')
-    subprocess.run(["git", "reset", "--hard", "origin/master"], cwd='/home/selya/vkbot')
-    subprocess.run(["touch", "/var/www/selya_pythonanywhere_com_wsgi.py"])
+    subprocess.run(["git", "fetch", "--all"], cwd='/var/apps/sharpybot')
+    subprocess.run(["git", "reset", "--hard", "origin/master"], cwd='/var/apps/sharpybot')
+    subprocess.run(["touch", "_reload_wand"])
     return 'ok'

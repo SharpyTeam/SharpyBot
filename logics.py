@@ -1,4 +1,4 @@
-import secrets
+import random
 import copy
 
 from responses.responses import *
@@ -11,7 +11,7 @@ def process_found_entry(regex, message, entry):
         # Save preprocessor
         if 'preprocess' in entry:
             preprocess = entry['preprocess']
-        entry = secrets.choice(entry['random'])
+        entry = random.choice(entry['random'])
 
     if 'message' in entry:
         # Or save it here

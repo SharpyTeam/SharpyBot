@@ -29,7 +29,7 @@ def process_timetable(m_vars):
 
     groups_search_result = requests.get(
         'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
-        verify=False)
+        verify=True)
 
     group_id = groups_search_result.json()[0]['id']
 
@@ -38,7 +38,7 @@ def process_timetable(m_vars):
         '?start=' + datetime.datetime.now().strftime("%Y.%m.%d") +
         '&finish=' + (datetime.datetime.now() + datetime.timedelta(days=2)).strftime('%Y.%m.%d') +
         '&lng=1',
-        verify=False)
+        verify=True)
 
     timetable_string = 'Расписание ' + group + ':\n'
 
