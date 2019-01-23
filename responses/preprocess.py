@@ -2,7 +2,8 @@ import re
 import requests
 import datetime
 
-from timetable import utils
+import timetable as t
+import timetable.utils
 import utils
 
 import urllib3
@@ -63,7 +64,7 @@ def process_timetable(m_vars):
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", entry['discipline'])
-        tag = utils.type_to_abbreviation(entry['kindOfWork'])
+        tag = t.utils.type_to_abbreviation(entry['kindOfWork'])
         timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + tag + '] '
         timetable_string += discipline + ' '
         timetable_string += '[' + entry['auditorium'] + ']\n '
