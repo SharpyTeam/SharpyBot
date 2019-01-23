@@ -2,7 +2,7 @@ from responses.preprocess import process_timetable
 from responses.preprocess import process_braces
 from responses.preprocess import process_sad_braces
 
-commands = {
+responses_plain = {
     'F': {
         'random': [
             {'attachment': 'photo-171283257_456239020'},
@@ -72,7 +72,7 @@ commands = {
     }
 }
 
-commands_regexp = {
+responses_regexp = {
     '(?i)(?<![а-яa-z0-9])в\s?пи[зс]ду(?![а-яa-z0-9])': {
         'attachment': 'photo-171283257_456239019'
     },

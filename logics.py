@@ -2,7 +2,7 @@ import random
 import copy
 import re
 
-from responses.responses import commands, commands_regexp
+from responses.responses import responses_plain, responses_regexp
 
 
 def process_found_entry(regex, message, entry):
@@ -41,13 +41,13 @@ def process_found_entry(regex, message, entry):
 def process_message(message):
     message = message.replace("ё", "е")
     message = message.replace("Ё", "е")
-    for k, v in commands.items():
+    for k, v in responses_plain.items():
         l_command = r'\s+'.join(re.split(r'\s+', k))
         regex = '(?i)(?<![а-яa-z0-9])' + l_command + '(?![а-яa-z0-9])'
         if re.search(regex, message) is not None:
             return process_found_entry(regex, message, v)
 
-    for k, v in commands_regexp.items():
+    for k, v in responses_regexp.items():
         if re.search(k, message) is not None:
             return process_found_entry(k, message, v)
 

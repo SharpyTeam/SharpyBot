@@ -2,6 +2,7 @@ import re
 import requests
 import datetime
 
+from timetable import utils
 import utils
 
 import urllib3
@@ -48,7 +49,7 @@ def process_timetable(m_vars):
         '&lng=1',
         verify=False)
 
-    timetable_string = 'Расписание ' + group + ':\n'
+    timetable_string = 'Расписание группы ' + groups_search_result[0]['label'] + ':'
 
     date = None
     for entry in group_timetable_get_result.json():
@@ -56,14 +57,16 @@ def process_timetable(m_vars):
             continue
 
         if date != entry['date']:
-            timetable_string += '\n\n'
+            timetable_string += '\n \n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
             timetable_string += fixed_date + ' ' + entry['dayOfWeekString'] + '\n\n'
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", entry['discipline'])
-        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' ' + discipline + ' '
-        timetable_string += '[' + entry['auditorium'] + ']\n'
+        tag = utils.type_to_abbreviation(entry['kindOfWork'])
+        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + tag + '] '
+        timetable_string += discipline + ' '
+        timetable_string += '[' + entry['auditorium'] + ']\n '
 
     if date is None:
         timetable_string = 'нет пар'
