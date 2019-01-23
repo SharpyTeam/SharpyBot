@@ -30,7 +30,7 @@ def process_timetable(m_vars):
     print(repr(m))
     print(repr(m[0]))
 
-    group = m[0].strip()
+    group = m.groups()[0].strip()
 
     print(group)
 
