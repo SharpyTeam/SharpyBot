@@ -50,7 +50,7 @@ def process_timetable(m_vars):
         '&lng=1',
         verify=False)
 
-    timetable_string = 'Расписание группы ' + groups_search_result[0]['label'] + ':'
+    timetable_string = 'Расписание группы ' + groups_search_result[0]['label'] + ':\n'
 
     date = None
     for entry in group_timetable_get_result.json():
