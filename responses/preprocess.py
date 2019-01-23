@@ -35,7 +35,7 @@ def process_timetable(m_vars):
         'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
         verify=False).json()
 
-    if len(groups_search_result == 0):
+    if len(groups_search_result) == 0:
         m_vars['timetable'] = "Группа «" + group + "» не найдена :("
         return
 
