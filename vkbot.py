@@ -5,7 +5,7 @@ import vk
 from flask import Flask, request, json
 
 from logics import process_message
-from settings import *
+from settings import confirmation_token, token, secret_token
 
 app = Flask(__name__)
 
@@ -16,11 +16,14 @@ api = vk.API(session, v='5.92')
 @app.route('/', methods=['POST'])
 def processing():
     data = json.loads(request.data)
+    
     if 'type' not in data.keys():
         return 'not vk'
+
     if data['type'] == 'confirmation':
         return confirmation_token
-    elif data['type'] == 'message_new':
+
+    if data['type'] == 'message_new':
         if 'secret' not in data or data['secret'] != secret_token:
             return 'ok'
 
