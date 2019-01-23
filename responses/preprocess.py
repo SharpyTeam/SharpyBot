@@ -33,9 +33,13 @@ def process_timetable(m_vars):
 
     groups_search_result = requests.get(
         'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
-        verify=False)
+        verify=False).json()
 
-    group_id = groups_search_result.json()[0]['id']
+    if len(groups_search_result == 0):
+        m_vars['timetable'] = "Группа «" + group + "» не найдена :("
+        return
+
+    group_id = groups_search_result[0]['id']
 
     group_timetable_get_result = requests.get(
         'https://ruz.hse.ru/api/schedule/group/' + str(group_id) +
