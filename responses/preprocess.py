@@ -25,7 +25,14 @@ def process_timetable(m_vars):
         m_vars['timetable'] = 'неверный запрос'
         return
 
+    print("Data for object:")
+    print(repr(m_vars))
+    print(repr(m))
+    print(repr(m[0]))
+
     group = m[0].strip()
+
+    print(group)
 
     groups_search_result = requests.get(
         'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
