@@ -60,7 +60,9 @@ def process_timetable(m_vars):
         if date != entry['date']:
             timetable_string += '\n \n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
-            timetable_string += fixed_date + ' ' + entry['dayOfWeekString'] + '\n\n'
+            date_str = fixed_date + ' ' + entry['dayOfWeekString']
+            sep = t.utils.generate_sep(len(date_str))
+            timetable_string += date_str + '\n' + sep + '\n'
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", entry['discipline'])
