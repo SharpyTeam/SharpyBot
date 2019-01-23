@@ -58,7 +58,7 @@ def process_timetable(m_vars):
             continue
 
         if date != entry['date']:
-            timetable_string += '\n \n'
+            timetable_string += '\n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
             date_str = fixed_date + ' ' + entry['dayOfWeekString']
             sep = t.utils.generate_sep(len(date_str))
