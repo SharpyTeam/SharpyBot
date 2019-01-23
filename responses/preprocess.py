@@ -28,7 +28,6 @@ def process_timetable(m_vars):
     print("Data for object:")
     print(repr(m_vars))
     print(repr(m))
-    print(repr(m[0]))
 
     group = m.groups()[0].strip()
 
