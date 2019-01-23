@@ -53,13 +53,14 @@ def process_timetable(m_vars):
     date = None
     for entry in group_timetable_get_result.json():
         if date != entry['date']:
-            timetable_string += '\n'
+            timetable_string += '\n\n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
-            timetable_string += fixed_date + ' ' + entry['dayOfWeekString'] + '\n'
+            timetable_string += fixed_date + ' ' + entry['dayOfWeekString'] + '\n\n'
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", entry['discipline'])
-        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' ' + discipline + '\n'
+        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' ' + discipline + ' '
+        timetable_string += '[' + entry['auditorium'] + ']\n'
 
     if date is None:
         timetable_string = 'нет пар'
