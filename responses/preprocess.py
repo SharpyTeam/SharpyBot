@@ -4,6 +4,8 @@ import datetime
 
 import utils
 
+import urllib3
+
 
 def process_braces(m_vars):
     braces_count = len(re.findall(r'\)', m_vars['message']))
@@ -20,18 +22,14 @@ def process_sad_braces(m_vars):
 
 
 def process_timetable(m_vars):
-    m = re.search(r'(?i)(?<=расписание)\s*\w+\s*', m_vars['message'])
+    m = re.search(r'(?i)(?<=расписание)\s*(\w+)\s*', m_vars['message'])
     if m is None:
         m_vars['timetable'] = 'неверный запрос'
         return
 
-    print("Data for object:")
-    print(repr(m_vars))
-    print(repr(m))
+    group = m.group(1).strip()
 
-    group = m.groups()[0].strip()
-
-    print(group)
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     groups_search_result = requests.get(
         'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
@@ -60,3 +58,7 @@ def process_timetable(m_vars):
         timetable_string = 'нет пар'
 
     m_vars['timetable'] = timetable_string
+
+
+if __name__ == '__main__':
+    process_timetable({'message': input()})
