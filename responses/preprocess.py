@@ -53,7 +53,7 @@ def process_timetable(m_vars):
     date = None
     for entry in group_timetable_get_result.json():
         if date != entry['date']:
-            fixed_date = ''.join(str(entry['date']).split('.')[::-1])
+            fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
             timetable_string += fixed_date + ' ' + entry['dayOfWeekString'] + '\n'
             date = entry['date']
 
