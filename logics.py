@@ -1,7 +1,7 @@
 import random
 import copy
 
-from responses.responses import *
+from responses.responses import commands, commands_regexp
 
 
 def process_found_entry(regex, message, entry):

@@ -1,4 +1,6 @@
-from responses.preprocess import *
+from responses.preprocess import process_timetable
+from responses.preprocess import process_braces
+from responses.preprocess import process_sad_braces
 
 commands = {
     'F': {
