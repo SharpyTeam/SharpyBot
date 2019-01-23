@@ -1,5 +1,6 @@
 import random
 import copy
+import re
 
 from responses.responses import commands, commands_regexp
 
