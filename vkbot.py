@@ -2,7 +2,7 @@ import random
 import subprocess
 
 import vk
-from flask import Flask, request, json
+from flask import Flask, request, json, render_template
 
 import database
 from logics import process_message
@@ -40,6 +40,11 @@ def processing():
                               forward_messages=str(data['object']['conversation_message_id']),
                               random_id=random.randint(0, 2147483647), **params)
     return 'ok'
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 
 @app.route('/repo_push', methods=['POST'])
