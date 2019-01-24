@@ -4,7 +4,7 @@ import settings
 
 
 class Db:
-    mdb: MongoClient = None
+    mdb = None
 
     def __init__(self):
         print("Connecting to MongoDB...")
