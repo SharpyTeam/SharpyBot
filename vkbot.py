@@ -13,6 +13,8 @@ app = Flask(__name__)
 session = vk.Session()
 api = vk.API(session, v='5.92')
 
+database.init()
+
 
 @app.route('/', methods=['POST'])
 def processing():
