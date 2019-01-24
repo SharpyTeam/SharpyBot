@@ -57,8 +57,9 @@ def process_timetable(m_vars):
     timetable_string = 'Расписание группы ' + groups_search_result[0]['label'] + ':\n'
 
     date = None
-    for entry in group_timetable_get_result.json():
-        if entry['disciplinetypeload'] == 5:
+    group_timetable_json = group_timetable_get_result.json()
+    for entry in group_timetable_json:
+        if entry['disciplinetypeload'] == 5 or entry['isBan']:
             continue
 
         discipline_name = None
@@ -86,7 +87,7 @@ def process_timetable(m_vars):
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", discipline_name)
-        tag = t.utils.type_to_abbreviation(entry['kindOfWork'])
+        tag = t.utils.type_to_abbreviation(entry['kindOfWork']) if entry['kindOfWork'] else '?'
         timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + entry['auditorium'] + '] '
         timetable_string += discipline + ' '
         timetable_string += '[' + tag + ']\n '
