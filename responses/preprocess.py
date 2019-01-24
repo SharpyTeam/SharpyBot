@@ -87,9 +87,9 @@ def process_timetable(m_vars):
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", discipline_name)
         tag = t.utils.type_to_abbreviation(entry['kindOfWork'])
-        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + tag + '] '
-        timetable_string += discipline + ' '
-        timetable_string += '[' + entry['auditorium'] + ']\n '
+        timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson']
+        timetable_string += ' [' + tag + ', ' + entry['auditorium'] + '] '
+        timetable_string += discipline + '\n  '
 
     if date is None:
         timetable_string = 'нет пар'
