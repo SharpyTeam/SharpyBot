@@ -12,5 +12,5 @@ class Db:
                                username=settings.mdb_user,
                                password=settings.mdb_password,
                                authMechanism='SCRAM-SHA-1')
-        print("Connected. MongoDb version " + self.mdb.server_info().version)
+        print("Connected. MongoDb info: " + repr(self.mdb.server_info()))
 
