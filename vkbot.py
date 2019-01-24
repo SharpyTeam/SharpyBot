@@ -4,7 +4,7 @@ import subprocess
 import vk
 from flask import Flask, request, json
 
-from database import Db
+import database
 from logics import process_message
 from settings import confirmation_token, token, secret_token
 
@@ -12,8 +12,6 @@ app = Flask(__name__)
 
 session = vk.Session()
 api = vk.API(session, v='5.92')
-
-Db()
 
 
 @app.route('/', methods=['POST'])

@@ -2,15 +2,13 @@ from pymongo import MongoClient
 
 import settings
 
+mdb = None
 
-class Db:
-    mdb = None
 
-    def __init__(self):
-        print("Connecting to MongoDB...")
-        self.mdb = MongoClient(settings.mdb_host + ':' + settings.mdb_port,
-                               username=settings.mdb_user,
-                               password=settings.mdb_password,
-                               authMechanism='SCRAM-SHA-1')
-        print("Connected. MongoDb info: " + repr(self.mdb.server_info()))
-
+def init():
+    print("Connecting to MongoDB...")
+    mdb = MongoClient(settings.mdb_host + ':' + settings.mdb_port,
+                      username=settings.mdb_user,
+                      password=settings.mdb_password,
+                      authMechanism='SCRAM-SHA-1')
+    print("Connected. MongoDb info: " + repr(mdb.server_info()))

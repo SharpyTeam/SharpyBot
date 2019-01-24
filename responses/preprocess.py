@@ -10,7 +10,7 @@ import utils
 
 import urllib3
 
-from database import Db
+import database
 
 
 def process_braces(m_vars):
@@ -61,15 +61,15 @@ def process_timetable(m_vars):
         if entry['disciplinetypeload'] == 5:
             continue
 
-        discipline_name = ''
-        db_disciplines = Db.mdb.sharpybot.disciplines
+        discipline_name = None
+        db_disciplines = database.mdb.sharpybot.disciplines
         if not db_disciplines.count_documents({'disciplineOid': entry['disciplineOid']}) > 0:
             db_disciplines.insert_one({
-                    'discipline': entry['discipline'],
-                    'disciplineOid': entry['disciplineOid'],
-                    'short_name': entry['discipline'],
-                    'disciplinetypeload': entry['disciplinetypeload']
-                })
+                'discipline': entry['discipline'],
+                'disciplineOid': entry['disciplineOid'],
+                'short_name': entry['discipline'],
+                'disciplinetypeload': entry['disciplinetypeload']
+            })
             discipline_name = entry['discipline']
             print("Adding discipline '" + entry['discipline'] + "'")
         else:
