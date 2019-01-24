@@ -6,6 +6,7 @@ mdb = None
 
 
 def init():
+    global mdb
     print("Connecting to MongoDB...")
     mdb = MongoClient(settings.mdb_host + ':' + settings.mdb_port,
                       username=settings.mdb_user,
