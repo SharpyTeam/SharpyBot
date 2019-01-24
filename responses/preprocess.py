@@ -2,11 +2,15 @@ import re
 import requests
 import datetime
 
+from pymongo.collection import Collection
+
 import timetable as t
 import timetable.utils
 import utils
 
 import urllib3
+
+from database import Db
 
 
 def process_braces(m_vars):
@@ -57,6 +61,22 @@ def process_timetable(m_vars):
         if entry['disciplinetypeload'] == 5:
             continue
 
+        discipline_name = ''
+        db_disciplines: Collection = Db.mdb.sharpybot.disciplines
+        if not db_disciplines.count_documents({'disciplineOid': entry['disciplineOid']}) > 0:
+            db_disciplines.insert_one({
+                    'discipline': entry['discipline'],
+                    'disciplineOid': entry['disciplineOid'],
+                    'short_name': entry['discipline'],
+                    'disciplinetypeload': entry['disciplinetypeload']
+                })
+            discipline_name = entry['discipline']
+            print("Adding discipline '" + entry['discipline'] + "'")
+        else:
+            d_entry = db_disciplines.find_one({'disciplineOid': entry['disciplineOid']})
+            discipline_name = d_entry['short_name']
+            print("Short name for '" + d_entry['discipline'] + "' is '" + discipline_name + "'")
+
         if date != entry['date']:
             timetable_string += '\n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
@@ -65,7 +85,7 @@ def process_timetable(m_vars):
             timetable_string += date_str + '\n' + sep + '\n'
             date = entry['date']
 
-        discipline = re.sub(r'(?i)\(.*?\)$', "", entry['discipline'])
+        discipline = re.sub(r'(?i)\(.*?\)$', "", discipline_name)
         tag = t.utils.type_to_abbreviation(entry['kindOfWork'])
         timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + tag + '] '
         timetable_string += discipline + ' '
