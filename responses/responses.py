@@ -3,75 +3,7 @@ from responses.preprocess import process_timetable
 from responses.preprocess import process_braces
 from responses.preprocess import process_sad_braces
 
-responses_plain = {
-    'F': {
-        'random': [
-            {'attachment': 'photo-171283257_456239020'},
-            {'attachment': 'photo-171283257_456239033'}
-        ]
-    },
-
-    'справедливо': {
-        'random': [
-            {'sticker_id': '163'},
-            {'attachment': 'photo-171283257_456239037'}
-        ]
-    },
-
-    'можно ненадо': {
-        'attachment': 'photo-171283257_456239021'
-    },
-
-    'ебать спасибо нахуй': {
-        'attachment': 'photo-171283257_456239022'
-    },
-
-    'пизда пизда огорчение': {
-        'attachment': 'photo-171283257_456239024'
-    },
-
-    'капец': {
-        'attachment': 'photo-171283257_456239030'
-    },
-
-    'глубокий вздох': {
-        'attachment': 'photo-171283257_456239028'
-    },
-
-    'ебош': {
-        'attachment': 'photo-171283257_456239026'
-    },
-
-    'ъеъ': {
-        'attachment': 'photo-171283257_456239029'
-    },
-
-    'доброе утро': {
-        'random': [
-            {'attachment': 'photo-171283257_456239032'},
-            {'attachment': 'photo-171283257_456239031'}
-        ]
-    },
-
-    'произошел троллинг': {
-        'attachment': 'photo-171283257_456239035'
-    },
-
-    'справедливость': {
-        'attachment': 'photo-171283257_456239037'
-    },
-
-    'но я же': {
-        'attachment': 'photo-171283257_456239043'
-    },
-
-    'гачи': {
-        'random': [
-            {'attachment': 'photo-171283257_456239047'},
-            {'attachment': 'photo-171283257_456239048'}
-        ]
-    }
-}
+responses_plain = {}
 
 responses_regexp = {
     '(?i)(?<![а-яa-z0-9])в\s?пи[зс]ду(?![а-яa-z0-9])': {
