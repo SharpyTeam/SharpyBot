@@ -33,6 +33,12 @@ def processing():
         if 'secret' not in data or data['secret'] != secret_token:
             return 'ok'
 
+        if data['object']['text'] == 'test_limit':
+            for i in range(200):
+                api.messages.send(access_token=token, peer_id=data['object']['peer_id'],
+                                  random_id=random.randint(0, 2147483647), message='test ' + str(i))
+            return 'ok'
+
         params = process_message(data['object']['text'])
 
         if params is not None:
