@@ -63,7 +63,7 @@ def process_timetable(m_vars):
             continue
 
         discipline_name = None
-        db_disciplines = database.mdb.sharpybot.disciplines
+        db_disciplines = database.mdb_c.sharpybot.disciplines
         if not db_disciplines.count_documents({'disciplineOid': entry['disciplineOid']}) > 0:
             db_disciplines.insert_one({
                 'discipline': entry['discipline'],

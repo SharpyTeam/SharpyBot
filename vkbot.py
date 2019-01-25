@@ -6,6 +6,7 @@ from flask import Flask, request, json, render_template
 
 import database
 from logics import process_message
+import responses
 from settings import confirmation_token, token, secret_token
 
 app = Flask(__name__)
@@ -14,6 +15,8 @@ session = vk.Session()
 api = vk.API(session, v='5.92')
 
 database.init()
+
+responses.responses.init()
 
 
 @app.route('/', methods=['POST'])

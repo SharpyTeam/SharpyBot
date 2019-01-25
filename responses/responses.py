@@ -1,3 +1,4 @@
+import database
 from responses.preprocess import process_timetable
 from responses.preprocess import process_braces
 from responses.preprocess import process_sad_braces
@@ -152,3 +153,16 @@ responses_regexp = {
         'preprocess': process_timetable
     }
 }
+
+
+def init():
+    r_plain = database.load_plain_responses()
+    r_regexp = database.load_regexp_responses()
+
+    for r in r_plain:
+        real_r = {r['trigger']: r['action']}
+        responses_plain.update(real_r)
+
+    for r in r_regexp:
+        real_r = {r['regexp']: r['action']}
+        responses_regexp.update(real_r)
