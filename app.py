@@ -43,6 +43,11 @@ def processing():
             print("Received appropriate message with trigger.")
             print("Callback object:")
             print(repr(data))
+            print(api.messages.getByConversationMessageId(
+                access_token=token, peer_id=str(data['object']['peer_id']),
+                group_id=data['group_id'],
+                conversation_message_ids=str(data['object']['conversation_message_id'])
+            ))
             api.messages.send(access_token=token, peer_id=data['object']['peer_id'],
                               forward_messages=str(data['object']['conversation_message_id']),
                               random_id=random.randint(0, 2147483647), **params)
