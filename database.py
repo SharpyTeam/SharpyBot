@@ -8,14 +8,16 @@ mdb = None
 
 def init():
     global mdb_c, mdb
-    print("Connecting to MongoDB...")
+    print("Connecting to MongoDb server (%s)..." %
+          (settings.mdb_host + ':' + settings.mdb_port))
     mdb_c = MongoClient(settings.mdb_host + ':' + settings.mdb_port,
                         username=settings.mdb_user,
                         password=settings.mdb_password,
                         authMechanism='SCRAM-SHA-1',
                         connect=False)
+    print("Accessing 'sharpybot' database...")
     mdb = mdb_c.sharpybot
-    print("Connected. MongoDb info: " + repr(mdb_c.server_info()))
+    print("Connected. MongoDb version: " + mdb_c.server_info()['version'])
 
 
 def load_plain_responses():

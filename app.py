@@ -16,7 +16,7 @@ api = vk.API(session, v='5.92')
 
 database.init()
 
-responses.responses.init()
+responses.collection.init()
 
 
 @app.route('/', methods=['POST'])

@@ -2,7 +2,7 @@ import random
 import copy
 import re
 
-from responses.responses import responses_plain, responses_regexp
+from responses.collection import responses_plain, responses_regexp
 
 
 def process_found_entry(regex, message, entry):
