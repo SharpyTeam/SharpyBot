@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-import settings
+import config
 
 mdb_c = None
 mdb = None
@@ -9,10 +9,10 @@ mdb = None
 def init():
     global mdb_c, mdb
     print("Connecting to MongoDb server (%s)..." %
-          (settings.mdb_host + ':' + settings.mdb_port))
-    mdb_c = MongoClient(settings.mdb_host + ':' + settings.mdb_port,
-                        username=settings.mdb_user,
-                        password=settings.mdb_password,
+          (config.mdb_host + ':' + config.mdb_port))
+    mdb_c = MongoClient(config.mdb_host + ':' + config.mdb_port,
+                        username=config.mdb_user,
+                        password=config.mdb_password,
                         authMechanism='SCRAM-SHA-1',
                         connect=False)
     print("Accessing 'sharpybot' database...")

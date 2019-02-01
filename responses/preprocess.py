@@ -4,6 +4,7 @@ import re
 import requests
 import urllib3
 
+import config
 import database
 import timetable as t
 import timetable.utils
@@ -35,7 +36,7 @@ def process_timetable(m_vars):
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     groups_search_result = requests.get(
-        'https://ruz.hse.ru/api/search?term=' + group + '&type=group',
+        config.api_url + '/search?term=' + group + '&type=group',
         verify=False).json()
 
     if not groups_search_result:
@@ -45,7 +46,7 @@ def process_timetable(m_vars):
     group_id = groups_search_result[0]['id']
 
     group_timetable_get_result = requests.get(
-        'https://ruz.hse.ru/api/schedule/group/' + str(group_id) +
+        config.api_url + '/schedule/group/' + str(group_id) +
         '?start=' + datetime.datetime.now().strftime("%Y.%m.%d") +
         '&finish=' + (datetime.datetime.now() + datetime.timedelta(days=2)).strftime('%Y.%m.%d') +
         '&lng=1',

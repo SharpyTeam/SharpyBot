@@ -7,7 +7,7 @@ from flask import Flask, request, json, render_template
 import database
 from logics import process_message
 import responses
-from settings import confirmation_token, token, secret_token
+from config import confirmation_token, token, secret_token
 
 app = Flask(__name__)
 
