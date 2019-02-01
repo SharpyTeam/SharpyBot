@@ -1,4 +1,4 @@
-import random
+import secrets
 import copy
 import re
 
@@ -12,7 +12,7 @@ def process_found_entry(regex, message, entry):
         # Save preprocessor
         if 'preprocess' in entry:
             preprocess = entry['preprocess']
-        entry = random.choice(entry['random'])
+        entry = secrets.choice(entry['random'])
 
     if 'message' in entry:
         # Or save it here

@@ -1,16 +1,13 @@
-import re
-import requests
 import datetime
+import re
 
-from pymongo.collection import Collection
-
-import timetable as t
-import timetable.utils
-import utils
-
+import requests
 import urllib3
 
 import database
+import timetable as t
+import timetable.utils
+import utils
 
 
 def process_braces(m_vars):
