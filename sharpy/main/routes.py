@@ -9,7 +9,7 @@ from sharpy.logics import process_message
 from . import main
 
 
-@main.route('/', methods=['POST'])
+@main.route('/vk_callback', methods=['POST'])
 def processing():
     data = json.loads(request.data)
 
