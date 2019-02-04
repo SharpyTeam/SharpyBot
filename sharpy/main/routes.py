@@ -3,6 +3,7 @@ import subprocess
 
 from flask import json, request, render_template
 
+from sharpy import api
 from sharpy.config import confirmation_token, secret_token, token
 from sharpy.logics import process_message
 from . import main
