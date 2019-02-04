@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-import config
+from sharpy import config
 
 mdb_c = None
 mdb = None

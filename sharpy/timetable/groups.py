@@ -1,8 +1,8 @@
 import requests
 import urllib3
 
-import config
-from database import mdb
+from sharpy import config
+from sharpy.database import mdb
 
 
 def update():

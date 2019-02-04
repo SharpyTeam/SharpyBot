@@ -2,7 +2,7 @@ import secrets
 import copy
 import re
 
-from responses.collection import responses_plain, responses_regexp
+from sharpy.responses.responses_collection import responses_plain, responses_regexp
 
 
 def process_found_entry(regex, message, entry):

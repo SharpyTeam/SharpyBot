@@ -1,14 +1,11 @@
-import datetime
+from datetime import datetime, timedelta
 import re
 
 import requests
 import urllib3
 
-import config
-import database
-import timetable as t
-import timetable.utils
-import utils
+from sharpy import config, database, utils
+import sharpy.timetable.utils
 
 
 def process_braces(m_vars):
@@ -27,12 +24,12 @@ def process_sad_braces(m_vars):
 
 def process_timetable(m_vars):
     m = re.search(r'(?i)(?<=расписание)\s*(\w+)\s*', m_vars['message'])
+
     if m is None:
         m_vars['timetable'] = 'неверный запрос'
         return
 
     group = m.group(1).strip()
-
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     groups_search_result = requests.get(
@@ -44,11 +41,12 @@ def process_timetable(m_vars):
         return
 
     group_id = groups_search_result[0]['id']
+    now = datetime.now()
 
     group_timetable_get_result = requests.get(
         config.api_url + '/schedule/group/' + str(group_id) +
-        '?start=' + datetime.datetime.now().strftime("%Y.%m.%d") +
-        '&finish=' + (datetime.datetime.now() + datetime.timedelta(days=2)).strftime('%Y.%m.%d') +
+        '?start=' + now.strftime("%Y.%m.%d") +
+        '&finish=' + (now + timedelta(days=2)).strftime('%Y.%m.%d') +
         '&lng=1',
         verify=False)
 
@@ -60,7 +58,6 @@ def process_timetable(m_vars):
         if entry['disciplinetypeload'] == 5 or entry['isBan']:
             continue
 
-        discipline_name = None
         db_disciplines = database.mdb_c.sharpybot.disciplines
         if not db_disciplines.count_documents({'disciplineOid': entry['disciplineOid']}) > 0:
             db_disciplines.insert_one({
@@ -80,12 +77,12 @@ def process_timetable(m_vars):
             timetable_string += '\n'
             fixed_date = '.'.join(str(entry['date']).split('.')[::-1])
             date_str = fixed_date + ' ' + entry['dayOfWeekString']
-            sep = t.utils.generate_sep(len(date_str))
+            sep = sharpy.timetable.utils.generate_sep(len(date_str))
             timetable_string += date_str + '\n' + sep + '\n'
             date = entry['date']
 
         discipline = re.sub(r'(?i)\(.*?\)$', "", discipline_name)
-        tag = t.utils.type_to_abbreviation(entry['kindOfWork']) if entry['kindOfWork'] else '?'
+        tag = sharpy.timetable.utils.type_to_abbreviation(entry['kindOfWork']) if entry['kindOfWork'] else '?'
         timetable_string += entry['beginLesson'] + ' - ' + entry['endLesson'] + ' [' + entry['auditorium'] + '] '
         timetable_string += discipline + ' '
         timetable_string += '[' + tag + ']\n '

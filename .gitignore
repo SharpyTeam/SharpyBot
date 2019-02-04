@@ -1,5 +1,5 @@
-settings.py
-config.py
+sharpy/settings.py
+sharpy/config.py
 .idea/**
 
 # Byte-compiled / optimized / DLL files
